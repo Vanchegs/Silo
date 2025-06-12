@@ -7,6 +7,7 @@ namespace Internal.Codebase
     {
         public int speed;
         public int damage;
+        public int maxHealth;
     }
 }
 

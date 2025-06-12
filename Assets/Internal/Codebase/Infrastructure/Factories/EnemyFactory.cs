@@ -7,11 +7,6 @@ namespace Internal.Codebase
         [SerializeField] private Enemy enemy; 
         [SerializeField] private EnemyConfig enemyConfig;
 
-        private void Start()
-        {
-            CreateEnemy();
-        }
-
         public Enemy CreateEnemy()
         {
             enemy.Initialize(enemyConfig);
