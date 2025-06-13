@@ -1,15 +1,16 @@
+using AYellowpaper.SerializedCollections;
 using Internal.Codebase;
 using UnityEngine;
 using Zenject;
 
 public class ConfigInstaller : MonoInstaller
 {
-    [SerializeField] private EnemyConfig mutantConfig;
+    [SerializeField] private SerializedDictionary<EnemyType, EnemyConfig> enemyConfigs;
 
     public override void InstallBindings()
     {
-        Container.Bind<EnemyConfig>()
-            .FromInstance(mutantConfig)
-            .WhenInjectedInto<EnemyFactory>();
+        Container.Bind<SerializedDictionary<EnemyType, EnemyConfig>>()
+            .FromInstance(enemyConfigs)
+            .AsSingle();
     }
 }

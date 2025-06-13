@@ -2,6 +2,6 @@ namespace Internal.Codebase
 {
     public interface IEnemyFactory
     {
-        Enemy CreateEnemy();
+        Enemy CreateEnemy(EnemyType enemyType);
     }
 }

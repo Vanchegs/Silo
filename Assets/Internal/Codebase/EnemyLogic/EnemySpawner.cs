@@ -5,7 +5,7 @@ namespace Internal.Codebase
 {
     public class EnemySpawner : MonoBehaviour
     {
-        private IEnemyFactory mutantFactory;
+        private IEnemyFactory enemyFactory;
         
         private void Start()
         {
@@ -13,8 +13,8 @@ namespace Internal.Codebase
         }
 
         [Inject]
-        public void Construct(IEnemyFactory mutantFactory) => 
-            this.mutantFactory = mutantFactory;
+        public void Construct(IEnemyFactory enemyFactory) => 
+            this.enemyFactory = enemyFactory;
 
         public void SpawnMutant()
         {
@@ -57,7 +57,7 @@ namespace Internal.Codebase
                     break;
             }
     
-            Instantiate(mutantFactory.CreateEnemy(), spawnPos, Quaternion.identity);
+            Instantiate(enemyFactory.CreateEnemy(EnemyType.Mutant), spawnPos, Quaternion.identity);
         }
     }
 }

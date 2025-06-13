@@ -1,20 +1,22 @@
+using AYellowpaper.SerializedCollections;
+using UnityEngine;
+
 namespace Internal.Codebase
 {
     public class EnemyFactory : IEnemyFactory
     {
-        private readonly Enemy enemy; 
-        private readonly EnemyConfig enemyConfig;
+        private readonly SerializedDictionary<EnemyType, EnemyConfig> enemyConfigs;
 
-        public EnemyFactory(Enemy enemy, EnemyConfig enemyConfig)
+        public EnemyFactory(SerializedDictionary<EnemyType, EnemyConfig> enemyConfigs)
         {
-            this.enemy = enemy;
-            this.enemyConfig = enemyConfig;
+            this.enemyConfigs = enemyConfigs;
         }
         
-        public Enemy CreateEnemy()
+        public Enemy CreateEnemy(EnemyType enemyType)
         {
-            enemy.Initialize(enemyConfig);
-
+            var enemy = enemyConfigs[enemyType].enemyPrefab;
+            enemy.Initialize(enemyConfigs[enemyType]);
+            
             return enemy;
         }
     }
