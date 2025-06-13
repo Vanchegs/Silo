@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Internal.Codebase;
 using UnityEngine;
@@ -9,8 +10,8 @@ public class ConfigInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<SerializedDictionary<EnemyType, EnemyConfig>>()
-            .FromInstance(enemyConfigs)
+        Container.Bind<Dictionary<EnemyType, EnemyConfig>>()
+            .FromInstance(new Dictionary<EnemyType, EnemyConfig>(enemyConfigs))
             .AsSingle();
     }
 }

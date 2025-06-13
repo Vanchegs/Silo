@@ -8,7 +8,7 @@ namespace Internal.Codebase.Infrastructure.Installers
         {
             Container.Bind<IEnemyFactory>()
                 .To<EnemyFactory>()
-                .AsTransient();
+                .AsCached();
         }
     }
 }

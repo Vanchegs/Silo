@@ -1,13 +1,12 @@
-using AYellowpaper.SerializedCollections;
-using UnityEngine;
+using System.Collections.Generic;
 
 namespace Internal.Codebase
 {
     public class EnemyFactory : IEnemyFactory
     {
-        private readonly SerializedDictionary<EnemyType, EnemyConfig> enemyConfigs;
+        private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
 
-        public EnemyFactory(SerializedDictionary<EnemyType, EnemyConfig> enemyConfigs)
+        public EnemyFactory(Dictionary<EnemyType, EnemyConfig> enemyConfigs)
         {
             this.enemyConfigs = enemyConfigs;
         }
