@@ -1,17 +1,19 @@
-using UnityEngine;
-
 namespace Internal.Codebase
 {
-    public class EnemyFactory : MonoBehaviour, IEnemyFactory
+    public class EnemyFactory : IEnemyFactory
     {
-        [SerializeField] private Enemy enemy; 
-        [SerializeField] private EnemyConfig enemyConfig;
+        private readonly Enemy enemy; 
+        private readonly EnemyConfig enemyConfig;
 
+        public EnemyFactory(Enemy enemy, EnemyConfig enemyConfig)
+        {
+            this.enemy = enemy;
+            this.enemyConfig = enemyConfig;
+        }
+        
         public Enemy CreateEnemy()
         {
             enemy.Initialize(enemyConfig);
-            
-            Instantiate(enemy);
 
             return enemy;
         }
