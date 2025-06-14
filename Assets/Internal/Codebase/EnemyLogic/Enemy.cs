@@ -2,13 +2,15 @@ using UnityEngine;
 
 namespace Internal.Codebase
 {
-    public class Enemy : MonoBehaviour, IMovement
+    public class Enemy : MonoBehaviour
     {
         private int speed;
         private int damage;
         private bool isDead;
         private int currentHealth;
         private int maxHealth;
+
+        internal IMovement movement;
 
         public void Initialize(EnemyConfig enemyConfig)
         {
@@ -19,12 +21,7 @@ namespace Internal.Codebase
             currentHealth = maxHealth;
         }
 
-        public virtual void Move()
-        {
-            
-        }
-
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             if (isDead) return;
 
