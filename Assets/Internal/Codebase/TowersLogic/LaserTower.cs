@@ -6,18 +6,18 @@ namespace Internal.Codebase.TowersLogic
     public class LaserTower : MonoBehaviour
     { 
         [Header("Combat Settings")]
-        [SerializeField] private float range = 5f;
-        [SerializeField] private int damagePerSecond = 5;
-        [SerializeField] private float fireRate = 1f;
-        [SerializeField] private int maxAmmo = 10;
+        [SerializeField] private float range;
+        [SerializeField] private int damagePerSecond;
+        [SerializeField] private float fireRate;
+        [SerializeField] private int maxAmmo;
         [SerializeField] private LayerMask enemyLayer;
 
         [Header("Visuals")]
         [SerializeField] private LineRenderer laserLine;
-        [SerializeField] private float laserAppearDuration = 0.2f;
-        [SerializeField] private float laserDisappearDuration = 0.3f;
-        [SerializeField] private Color activeLaserColor = Color.red;
-        [SerializeField] private Color depletedLaserColor = Color.gray;
+        [SerializeField] private float laserAppearDuration;
+        [SerializeField] private float laserDisappearDuration;
+        [SerializeField] private Color activeLaserColor;
+        [SerializeField] private Color depletedLaserColor;
 
         private int currentAmmo;
         private Transform target;
@@ -29,15 +29,6 @@ namespace Internal.Codebase.TowersLogic
         {
             currentAmmo = maxAmmo;
             InitializeLaser();
-        }
-
-        private void InitializeLaser()
-        {
-            laserLine.startColor = activeLaserColor;
-            laserLine.endColor = activeLaserColor;
-            laserLine.startWidth = 0f;
-            laserLine.endWidth = 0f;
-            laserLine.enabled = false;
         }
 
         private void Update()
@@ -61,19 +52,25 @@ namespace Internal.Codebase.TowersLogic
             }
         }
 
+        private void InitializeLaser()
+        {
+            laserLine.startColor = activeLaserColor;
+            laserLine.endColor = activeLaserColor;
+            laserLine.startWidth = 1f;
+            laserLine.endWidth = 1f;
+        }
+
         private void Shoot()
         {
             if (target == null) return;
 
-            // Настройка луча
-            laserLine.SetPosition(0, transform.position);
+            laserLine.SetPosition(1, transform.position);
             laserLine.SetPosition(1, target.position);
             
             AppearLaser();
             
             ApplyDamageToTarget();
 
-            // Расход боезапаса
             currentAmmo--;
             if (currentAmmo <= 0)
             {
@@ -98,8 +95,14 @@ namespace Internal.Codebase.TowersLogic
                     nearestEnemy = enemy.transform;
                 }
             }
-
+            
             target = nearestEnemy;
+        }
+        
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, range);
         }
 
         private void ApplyDamageToTarget()

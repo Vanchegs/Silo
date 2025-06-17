@@ -27,8 +27,10 @@ namespace Internal.Codebase
 
             currentHealth -= damage;
         
+            Debug.Log(currentHealth);
             if (currentHealth <= 0)
             {
+                isDead = true;
                 Die();
             }
         }

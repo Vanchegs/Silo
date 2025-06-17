@@ -1,15 +1,11 @@
 using System.Collections.Generic;
+using Zenject;
 
 namespace Internal.Codebase
 {
     public class EnemyFactory : IEnemyFactory
     {
-        private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
-
-        public EnemyFactory(Dictionary<EnemyType, EnemyConfig> enemyConfigs)
-        {
-            this.enemyConfigs = enemyConfigs;
-        }
+        [Inject] private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
         
         public Enemy CreateEnemy(EnemyType enemyType)
         {

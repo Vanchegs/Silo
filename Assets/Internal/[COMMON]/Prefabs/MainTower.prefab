@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
-  damagePerSecond: 5
+  damagePerSecond: 1
   fireRate: 1
   maxAmmo: 20
   enemyLayer:
@@ -109,7 +109,7 @@ MonoBehaviour:
   laserAppearDuration: 0.2
   laserDisappearDuration: 0.3
   activeLaserColor: {r: 1, g: 0, b: 0, a: 1}
-  depletedLaserColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  depletedLaserColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!120 &-1718764452489932580
 LineRenderer:
   serializedVersion: 2
