@@ -7,7 +7,7 @@ namespace Internal.Codebase.TowersLogic
     { 
         [Header("Combat Settings")]
         [SerializeField] private float range;
-        [SerializeField] private int damagePerSecond;
+        [SerializeField] private float damagePerSecond;
         [SerializeField] private float fireRate;
         [SerializeField] private int maxAmmo;
         [SerializeField] private LayerMask enemyLayer;
@@ -24,6 +24,8 @@ namespace Internal.Codebase.TowersLogic
         private float fireTimer;
         private Tween laserFadeTween;
         private bool isActive = true;
+        private bool isApplyingDamage;
+        private Enemy currentTarget;
 
         private void Start()
         {
@@ -56,8 +58,8 @@ namespace Internal.Codebase.TowersLogic
         {
             laserLine.startColor = activeLaserColor;
             laserLine.endColor = activeLaserColor;
-            laserLine.startWidth = 1f;
-            laserLine.endWidth = 1f;
+            laserLine.startWidth = 0.5f;
+            laserLine.endWidth = 0.5f;
         }
 
         private void Shoot()
@@ -107,11 +109,29 @@ namespace Internal.Codebase.TowersLogic
 
         private void ApplyDamageToTarget()
         {
-            Enemy enemy = target.GetComponent<Enemy>();
-            if (enemy != null)
+            if (isApplyingDamage || target == null) return;
+
+            currentTarget = target.GetComponent<Enemy>();
+            if (currentTarget == null) return;
+
+            isApplyingDamage = true;
+            float damageInterval = 0.1f;
+
+            // Запускаем постоянный урон, пока есть цель
+            InvokeRepeating(nameof(DealDamageOverTime), 0f, damageInterval);
+        }
+        
+        private void DealDamageOverTime()
+        {
+            if (currentTarget == null || Vector2.Distance(transform.position, currentTarget.transform.position) > range)
             {
-                enemy.TakeDamage(damagePerSecond);
+                CancelInvoke(nameof(DealDamageOverTime));
+                isApplyingDamage = false;
+                DisappearLaser();
+                return;
             }
+
+            currentTarget.TakeDamage(damagePerSecond * 0.1f);
         }
 
         private void OnAmmoDepleted()

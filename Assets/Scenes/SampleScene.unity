@@ -6487,6 +6487,10 @@ PrefabInstance:
       value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 5697467785562730263, guid: 19c0171637ba3ef4ca7a3ef79c0da381, type: 3}
+      propertyPath: damagePerSecond
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697467785562730263, guid: 19c0171637ba3ef4ca7a3ef79c0da381, type: 3}
       propertyPath: enemyLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}

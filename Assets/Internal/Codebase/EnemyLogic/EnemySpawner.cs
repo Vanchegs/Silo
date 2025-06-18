@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +7,8 @@ namespace Internal.Codebase
     public class EnemySpawner : MonoBehaviour
     {
         private IEnemyFactory enemyFactory;
+     
+        [Inject] private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
         
         private void Start()
         {
@@ -57,7 +60,8 @@ namespace Internal.Codebase
                     break;
             }
     
-            Instantiate(enemyFactory.CreateEnemy(EnemyType.Mutant), spawnPos, Quaternion.identity);
+            var enemy = Instantiate(enemyFactory.CreateEnemy(EnemyType.Mutant), spawnPos, Quaternion.identity);
+            enemy.Initialize(enemyConfigs[EnemyType.Mutant]);
         }
     }
 }

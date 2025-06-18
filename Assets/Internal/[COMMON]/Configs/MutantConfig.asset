@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   damage: 2
-  maxHealth: 1000
+  maxHealth: 10
   enemyPrefab: {fileID: 4349219368532177369, guid: a2b10c9d62052444d9dc32caea7312f5, type: 3}

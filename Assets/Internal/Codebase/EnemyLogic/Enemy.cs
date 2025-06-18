@@ -7,7 +7,7 @@ namespace Internal.Codebase
         private int speed;
         private int damage;
         private bool isDead;
-        private int currentHealth;
+        private float currentHealth;
         private int maxHealth;
 
         internal IMovement movement;
@@ -19,15 +19,16 @@ namespace Internal.Codebase
             maxHealth = enemyConfig.maxHealth;
 
             currentHealth = maxHealth;
+            
+            Debug.Log($"Инициализация");
         }
 
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(float damage)
         {
             if (isDead) return;
-
+            
             currentHealth -= damage;
-        
-            Debug.Log(currentHealth);
+
             if (currentHealth <= 0)
             {
                 isDead = true;
@@ -35,7 +36,7 @@ namespace Internal.Codebase
             }
         }
 
-        public void Die() => 
+        private void Die() => 
             Destroy(gameObject);
     }
 }

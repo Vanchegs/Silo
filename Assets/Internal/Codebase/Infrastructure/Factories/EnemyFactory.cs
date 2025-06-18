@@ -10,7 +10,6 @@ namespace Internal.Codebase
         public Enemy CreateEnemy(EnemyType enemyType)
         {
             var enemy = enemyConfigs[enemyType].enemyPrefab;
-            enemy.Initialize(enemyConfigs[enemyType]);
             
             return enemy;
         }
