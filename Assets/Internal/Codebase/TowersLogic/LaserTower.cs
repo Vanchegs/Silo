@@ -1,14 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Internal.Codebase.TowersLogic
+namespace Internal.Codebase
 {
     public class LaserTower : MonoBehaviour
     { 
         [Header("Combat Settings")]
         [SerializeField] private float range;
         [SerializeField] private float damagePerSecond;
-        [SerializeField] private float fireRate;
         [SerializeField] private int maxAmmo;
         [SerializeField] private LayerMask enemyLayer;
 
@@ -18,8 +17,10 @@ namespace Internal.Codebase.TowersLogic
         [SerializeField] private float laserDisappearDuration;
         [SerializeField] private Color activeLaserColor;
         [SerializeField] private Color depletedLaserColor;
+        [SerializeField] private Transform laserStartPosition;
 
-        private int currentAmmo;
+        private float currentAmmo;
+        private float ammoConsumptionRate = 1f;
         private Transform target;
         private float fireTimer;
         private Tween laserFadeTween;
@@ -35,51 +36,53 @@ namespace Internal.Codebase.TowersLogic
 
         private void Update()
         {
-            if (!isActive || currentAmmo <= 0) return;
+            if (!isActive || currentAmmo <= 0) 
+            {
+                if (laserLine.enabled) DisappearLaser();
+                return;
+            }
 
             FindNearestEnemy();
-
-            if (target != null)
-            {
-                fireTimer += Time.deltaTime;
-                if (fireTimer >= 1f / fireRate)
-                {
-                    Shoot();
-                    fireTimer = 0f;
-                }
-            }
-            else if (laserLine.enabled)
-            {
-                DisappearLaser();
-            }
+            Shoot();
         }
 
         private void InitializeLaser()
         {
             laserLine.startColor = activeLaserColor;
             laserLine.endColor = activeLaserColor;
-            laserLine.startWidth = 0.5f;
-            laserLine.endWidth = 0.5f;
+            laserLine.startWidth = 0.7f;
+            laserLine.endWidth = 0.7f;
         }
 
         private void Shoot()
         {
-            if (target == null) return;
-
-            laserLine.SetPosition(1, transform.position);
-            laserLine.SetPosition(1, target.position);
-            
-            AppearLaser();
-            
-            ApplyDamageToTarget();
-
-            currentAmmo--;
-            if (currentAmmo <= 0)
+            if (target == null) 
             {
-                OnAmmoDepleted();
+                if (laserLine.enabled) 
+                    DisappearLaser();
+                return;
             }
             
-            DOVirtual.DelayedCall(0.1f, DisappearLaser);
+            laserLine.SetPosition(0, laserStartPosition.position);
+            laserLine.SetPosition(1, target.position);
+    
+            if (!laserLine.enabled)
+            {
+                AppearLaser();
+            }
+
+            if (!isApplyingDamage)
+            {
+                ApplyDamageToTarget();
+            }
+
+            currentAmmo -= Time.deltaTime * ammoConsumptionRate;
+    
+            if (currentAmmo <= 0)
+            {
+                currentAmmo = 0;
+                OnAmmoDepleted();
+            }
         }
         
         private void FindNearestEnemy()
