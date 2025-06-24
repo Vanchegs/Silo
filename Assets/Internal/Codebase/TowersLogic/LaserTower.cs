@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Internal.Codebase
 {
@@ -50,8 +51,10 @@ namespace Internal.Codebase
         {
             laserLine.startColor = activeLaserColor;
             laserLine.endColor = activeLaserColor;
-            laserLine.startWidth = 0.7f;
-            laserLine.endWidth = 0.7f;
+            laserLine.startWidth = 0.2f;
+            laserLine.endWidth = 0.2f;
+            
+            AddGlowEffect();
         }
 
         private void Shoot()
@@ -66,15 +69,11 @@ namespace Internal.Codebase
             laserLine.SetPosition(0, laserStartPosition.position);
             laserLine.SetPosition(1, target.position);
     
-            if (!laserLine.enabled)
-            {
+            if (!laserLine.enabled) 
                 AppearLaser();
-            }
 
-            if (!isApplyingDamage)
-            {
+            if (!isApplyingDamage) 
                 ApplyDamageToTarget();
-            }
 
             currentAmmo -= Time.deltaTime * ammoConsumptionRate;
     
@@ -109,6 +108,14 @@ namespace Internal.Codebase
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, range);
         }
+        
+        private void AddGlowEffect()
+        {
+            var glow = gameObject.GetComponent<Light2D>();
+            glow.color = activeLaserColor;
+            glow.intensity = 0.8f;
+            glow.pointLightOuterRadius = 0.5f;
+        }
 
         private void ApplyDamageToTarget()
         {
@@ -120,7 +127,6 @@ namespace Internal.Codebase
             isApplyingDamage = true;
             float damageInterval = 0.1f;
 
-            // Запускаем постоянный урон, пока есть цель
             InvokeRepeating(nameof(DealDamageOverTime), 0f, damageInterval);
         }
         

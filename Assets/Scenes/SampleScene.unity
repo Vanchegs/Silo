@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 385653156}
   - component: {fileID: 385653157}
   m_Layer: 0
-  m_Name: Silo
+  m_Name: Shelter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,6 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96333fab99f84c1bab729397d9c20f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shelterPosition: {fileID: 385653156}
 --- !u!1 &591586404
 GameObject:
   m_ObjectHideFlags: 0

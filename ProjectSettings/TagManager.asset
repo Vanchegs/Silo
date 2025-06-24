@@ -44,3 +44,6 @@ TagManager:
   - name: Buildings
     uniqueID: 842606993
     locked: 0
+  - name: Laser
+    uniqueID: 1446885721
+    locked: 0

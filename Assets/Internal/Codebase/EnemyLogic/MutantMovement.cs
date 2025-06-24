@@ -33,9 +33,7 @@ namespace Internal.Codebase
             
             float distanceToTarget = Vector2.Distance(transform.position, shelterPosition.position);
             if (distanceToTarget > stoppingDistance)
-            {
                 transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
-            }
         }
     }
 }
