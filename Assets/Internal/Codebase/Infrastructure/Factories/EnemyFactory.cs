@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Zenject;
 
@@ -11,6 +12,9 @@ namespace Internal.Codebase
         {
             var enemy = enemyConfigs[enemyType].enemyPrefab;
             
+            if (!enemyConfigs.TryGetValue(enemyType, out var config))
+                throw new ArgumentException($"Enemy type {enemyType} not found in configs");
+
             return enemy;
         }
     }

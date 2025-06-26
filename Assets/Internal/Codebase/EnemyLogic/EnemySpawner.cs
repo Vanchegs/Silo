@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -7,6 +8,7 @@ namespace Internal.Codebase
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private Transform shelterPosition;
+        [SerializeField] private int minSpawnTime, maxSpawnTime;
         
         private IEnemyFactory enemyFactory;
      
@@ -14,19 +16,21 @@ namespace Internal.Codebase
         
         private void Start()
         {
-            SpawnMutant();
+            SpawnEnemy(EnemyType.Mutant);
+
+            StartCoroutine(RegularSpawnMutant());
         }
 
         [Inject]
         public void Construct(IEnemyFactory enemyFactory) => 
             this.enemyFactory = enemyFactory;
 
-        public void SpawnMutant()
+        public void SpawnEnemy(EnemyType enemyType)
         {
             var spawnPos = SpawnPosDefinition();
 
-            var enemy = Instantiate(enemyFactory.CreateEnemy(EnemyType.Mutant), spawnPos, Quaternion.identity);
-            enemy.Initialize(enemyConfigs[EnemyType.Mutant], shelterPosition);
+            var enemy = Instantiate(enemyFactory.CreateEnemy(enemyType), spawnPos, Quaternion.identity);
+            enemy.Initialize(enemyConfigs[enemyType], shelterPosition);
         }
 
         private Vector2 SpawnPosDefinition()
@@ -71,6 +75,19 @@ namespace Internal.Codebase
             }
 
             return spawnPos;
+        }
+
+        private IEnumerator RegularSpawnMutant()
+        {
+            while (true)
+            {
+                var waitingTime = Random.Range(minSpawnTime, maxSpawnTime);
+                Debug.Log(waitingTime);
+                
+                SpawnEnemy(EnemyType.Mutant);
+                
+                yield return new WaitForSeconds(waitingTime); 
+            }
         }
     }
 }

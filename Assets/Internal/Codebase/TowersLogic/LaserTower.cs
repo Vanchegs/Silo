@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Internal.Codebase
 {
@@ -53,8 +52,6 @@ namespace Internal.Codebase
             laserLine.endColor = activeLaserColor;
             laserLine.startWidth = 0.2f;
             laserLine.endWidth = 0.2f;
-            
-            AddGlowEffect();
         }
 
         private void Shoot()
@@ -107,14 +104,6 @@ namespace Internal.Codebase
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, range);
-        }
-        
-        private void AddGlowEffect()
-        {
-            var glow = gameObject.GetComponent<Light2D>();
-            glow.color = activeLaserColor;
-            glow.intensity = 0.8f;
-            glow.pointLightOuterRadius = 0.5f;
         }
 
         private void ApplyDamageToTarget()
