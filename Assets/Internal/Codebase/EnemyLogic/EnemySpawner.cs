@@ -11,11 +11,17 @@ namespace Internal.Codebase
         [SerializeField] private int minSpawnTime, maxSpawnTime;
         
         private IEnemyFactory enemyFactory;
+        private Camera mainCamera;
+        private float cameraHeight;
+        private float cameraWidth;
+        private float spawnMargin;
      
         [Inject] private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
         
         private void Start()
         {
+            mainCamera = CameraCash(out cameraHeight, out cameraWidth, out spawnMargin);
+            
             SpawnEnemy(EnemyType.Mutant);
 
             StartCoroutine(RegularSpawnMutant());
@@ -35,13 +41,6 @@ namespace Internal.Codebase
 
         private Vector2 SpawnPosDefinition()
         {
-            Camera mainCamera = Camera.main;
-
-            float cameraHeight = 2f * mainCamera.orthographicSize;
-            float cameraWidth = cameraHeight * mainCamera.aspect;
-
-            float spawnMargin = 2f;
-
             int spawnSide = Random.Range(0, 4);
 
             Vector2 spawnPos = Vector2.zero;
@@ -77,12 +76,22 @@ namespace Internal.Codebase
             return spawnPos;
         }
 
+        private static Camera CameraCash(out float cameraHeight, out float cameraWidth, out float spawnMargin)
+        {
+            Camera mainCamera = Camera.main;
+
+            cameraHeight = 2f * mainCamera.orthographicSize;
+            cameraWidth = cameraHeight * mainCamera.aspect;
+
+            spawnMargin = 2f;
+            return mainCamera;
+        }
+
         private IEnumerator RegularSpawnMutant()
         {
             while (true)
             {
                 var waitingTime = Random.Range(minSpawnTime, maxSpawnTime);
-                Debug.Log(waitingTime);
                 
                 SpawnEnemy(EnemyType.Mutant);
                 
