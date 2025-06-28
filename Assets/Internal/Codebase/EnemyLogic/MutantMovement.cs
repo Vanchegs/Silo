@@ -8,14 +8,21 @@ namespace Internal.Codebase
         private Transform shelterPosition;
         private int moveSpeed;
         private float stoppingDistance = 0.5f;
-
+        private Rigidbody2D rb;
+    
         public MutantMovement(Transform transform, Transform shelterPosition, EnemyConfig enemyConfig)
         {
             this.transform = transform;
             this.shelterPosition = shelterPosition;
             moveSpeed = enemyConfig.speed;
-        }
 
+            rb = transform.gameObject.GetComponent<Rigidbody2D>();
+
+            rb.gravityScale = 0;
+            rb.freezeRotation = true;
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        }
+    
         public void Move()
         {
             Vector2 direction = (shelterPosition.position - transform.position).normalized;
@@ -33,7 +40,9 @@ namespace Internal.Codebase
             
             float distanceToTarget = Vector2.Distance(transform.position, shelterPosition.position);
             if (distanceToTarget > stoppingDistance)
-                transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+                rb.velocity = direction * moveSpeed;
+            else
+                rb.velocity = Vector2.zero;
         }
     }
 }
