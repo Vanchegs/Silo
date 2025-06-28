@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Internal.Codebase
 {
@@ -18,6 +19,10 @@ namespace Internal.Codebase
         [SerializeField] private Color activeLaserColor;
         [SerializeField] private Color depletedLaserColor;
         [SerializeField] private Transform laserStartPosition;
+
+        [Header("UI")] 
+        [SerializeField] private Canvas towerCanvas;
+        [SerializeField] private Button towerButton;
 
         private float currentAmmo;
         private float ammoConsumptionRate = 1f;
@@ -137,6 +142,9 @@ namespace Internal.Codebase
             laserLine.startColor = depletedLaserColor;
             laserLine.endColor = depletedLaserColor;
             isActive = false;
+            towerCanvas.gameObject.SetActive(true);
+            towerButton.transform.DOLocalMoveY(0,0.5f).From(-0.5f).SetEase(Ease.OutBack);
+            
             Debug.Log("Башня разряжена! Требуется перезарядка.");
         }
 
