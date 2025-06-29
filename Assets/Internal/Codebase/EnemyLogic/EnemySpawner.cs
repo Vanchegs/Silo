@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace Internal.Codebase
 {
@@ -9,34 +7,30 @@ namespace Internal.Codebase
     {
         [SerializeField] private Transform shelterPosition;
         [SerializeField] private int minSpawnTime, maxSpawnTime;
+        [SerializeField] private EnemyConfigsDictionary enemyConfigs;
         
-        private IEnemyFactory enemyFactory;
+        private EnemyFactory enemyFactory;
         private Camera mainCamera;
         private float cameraHeight;
         private float cameraWidth;
         private float spawnMargin;
-     
-        [Inject] private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
         
         private void Start()
         {
             mainCamera = CameraCash(out cameraHeight, out cameraWidth, out spawnMargin);
+            enemyFactory = new EnemyFactory(enemyConfigs);
             
             SpawnEnemy(EnemyType.Mutant);
 
             StartCoroutine(RegularSpawnMutant());
         }
 
-        [Inject]
-        public void Construct(IEnemyFactory enemyFactory) => 
-            this.enemyFactory = enemyFactory;
-
         public void SpawnEnemy(EnemyType enemyType)
         {
             var spawnPos = SpawnPosDefinition();
 
             var enemy = Instantiate(enemyFactory.CreateEnemy(enemyType), spawnPos, Quaternion.identity);
-            enemy.Initialize(enemyConfigs[enemyType], shelterPosition);
+            enemy.Initialize(enemyConfigs.configs[enemyType], shelterPosition);
         }
 
         private Vector2 SpawnPosDefinition()
