@@ -1,11 +1,12 @@
 namespace Internal.Codebase.PeopleLogic
 {
-    public class PeopleManager : IPeopleManager
+    public class PeopleService : IPeopleManager
     {
         private People people;
+        
         public void LoadPeople()
         {
-            throw new System.NotImplementedException();
+            people = new People(10);
         }
 
         public void ChangePeopleAmount(int changeAmount)

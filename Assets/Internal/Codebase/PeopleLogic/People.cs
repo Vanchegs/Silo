@@ -4,6 +4,9 @@ public class People
     public int PeopleAmount { get; private set; }
     public float Speed => Level * 0.5f;
 
+    public People(int peopleAmount) => 
+        PeopleAmount = peopleAmount;
+
     public void LevelUp() => 
         Level ++;
 
