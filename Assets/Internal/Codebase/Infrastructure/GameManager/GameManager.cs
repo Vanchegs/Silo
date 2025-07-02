@@ -9,6 +9,8 @@ namespace Internal.Codebase
         private void Awake()
         {
             StatesRegistration();
+            
+            StateMachine.ChangeState<BootState>();
         }
 
         private void StatesRegistration()
