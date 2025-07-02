@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Internal.Codebase
 {
-    public class GameStateMachine
+    public class StateMachine
     {
-        private IGameState currentState;
+        private State currentState;
 
-        private Dictionary<Type, IGameState> gameStates = new();
+        private Dictionary<Type, State> gameStates = new();
 
-        public void RegisterState<TState>(TState state) where TState : IGameState
+        public void RegisterState<TState>(TState state) where TState : State
         {
             Type stateType = typeof(TState);
 
@@ -19,11 +19,11 @@ namespace Internal.Codebase
                 throw new ArgumentException($"State {stateType.Name} is already registered!");
         }
         
-        public void EnterState<TState>() where TState : IGameState
+        public void EnterState<TState>() where TState : State
         {
             Type stateType = typeof(TState);
 
-            if (gameStates.TryGetValue(stateType, out IGameState newState))
+            if (gameStates.TryGetValue(stateType, out State newState))
             {
                 currentState?.Exit();
                 currentState = newState;
@@ -33,8 +33,8 @@ namespace Internal.Codebase
                 throw new KeyNotFoundException($"State {stateType.Name} is not registered!");
         }
 
-        public void ChangeState<TState>() where TState : IGameState => 
-            EnterState<TState>();
+        public void ChangeState<TState>() where TState : State => 
+            EnterState<State>();
 
         public void ExitState<TState>()
         {
@@ -42,7 +42,7 @@ namespace Internal.Codebase
             currentState = null;
         }
         
-        public IGameState GetCurrentState<TState>() => 
+        public State GetCurrentState<TState>() => 
             currentState;
     }
 }

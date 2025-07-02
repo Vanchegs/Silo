@@ -1,6 +1,6 @@
 namespace Internal.Codebase
 {
-    public class BootState : State
+    public class GameState : State
     {
         public override void Enter()
         {
