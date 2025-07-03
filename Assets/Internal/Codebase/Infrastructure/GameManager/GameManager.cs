@@ -5,6 +5,8 @@ namespace Internal.Codebase
     public class GameManager : MonoBehaviour
     {
         public StateMachine StateMachine = new();
+        
+        public bool IsServicesInitialized { get; private set; }
 
         private void Awake()
         {
@@ -15,6 +17,11 @@ namespace Internal.Codebase
             StateMachine.ChangeState<BootState>();
         }
 
+        public void InitializeServices()
+        {
+            IsServicesInitialized = true;
+        }
+        
         private void StatesRegistration()
         {
             StateMachine.RegisterState(new BootState(this));
