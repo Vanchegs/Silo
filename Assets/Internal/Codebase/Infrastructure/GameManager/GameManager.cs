@@ -1,21 +1,53 @@
+using System;
 using UnityEngine;
 
 namespace Internal.Codebase
 {
     public class GameManager : MonoBehaviour
     {
-        public StateMachine StateMachine = new();
-        
+        private static GameManager _instance;
+
+        public StateMachine StateMachine;
+
         public bool IsServicesInitialized { get; private set; }
-        
+
         public SceneSwitcher SceneSwitcher { get; set; }
+
+        public static GameManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<GameManager>();
+                
+                    if (_instance == null)
+                    {
+                        GameObject obj = new GameObject("GameManager");
+                        _instance = obj.AddComponent<GameManager>();
+                    }
+                }
+                return _instance;
+            }
+        }
 
         private void Awake()
         {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        
+            _instance = this;
+            
             DontDestroyOnLoad(this);
-            
+        }
+
+        private void Start()
+        {
+            StateMachine = new StateMachine();
             StatesRegistration();
-            
             StateMachine.ChangeState<BootState>();
         }
 

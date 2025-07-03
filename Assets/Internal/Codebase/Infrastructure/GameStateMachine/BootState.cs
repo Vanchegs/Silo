@@ -9,6 +9,8 @@ namespace Internal.Codebase
 
         public override void Enter()
         {
+            if (gameManager.IsServicesInitialized)
+                return;
             gameManager.InitializeServices();
         }
 
