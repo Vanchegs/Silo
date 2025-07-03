@@ -4,10 +4,12 @@ namespace Internal.Codebase
 {
     public class GameManager : MonoBehaviour
     {
-        public StateMachine StateMachine = new StateMachine();
+        public StateMachine StateMachine = new();
 
         private void Awake()
         {
+            DontDestroyOnLoad(this);
+            
             StatesRegistration();
             
             StateMachine.ChangeState<BootState>();
@@ -15,8 +17,9 @@ namespace Internal.Codebase
 
         private void StatesRegistration()
         {
-            StateMachine.RegisterState(new BootState());
-            StateMachine.RegisterState(new GameState());
+            StateMachine.RegisterState(new BootState(this));
+            StateMachine.RegisterState(new GameState(this));
+            StateMachine.RegisterState(new MainMenuState(this));
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Internal.Codebase
         }
 
         public void ChangeState<TState>() where TState : State => 
-            EnterState<State>();
+            EnterState<TState>();
 
         public void ExitState<TState>()
         {
