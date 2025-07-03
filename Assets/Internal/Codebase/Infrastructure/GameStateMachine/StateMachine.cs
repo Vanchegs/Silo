@@ -18,8 +18,20 @@ namespace Internal.Codebase
             else
                 throw new ArgumentException($"State {stateType.Name} is already registered!");
         }
-        
-        public void EnterState<TState>() where TState : State
+
+        public void ChangeState<TState>() where TState : State => 
+            EnterState<TState>();
+
+        public void ExitState<TState>()
+        {
+            currentState?.Exit();
+            currentState = null;
+        }
+
+        public State GetCurrentState<TState>() => 
+            currentState;
+
+        private void EnterState<TState>() where TState : State
         {
             Type stateType = typeof(TState);
 
@@ -32,17 +44,5 @@ namespace Internal.Codebase
             else
                 throw new KeyNotFoundException($"State {stateType.Name} is not registered!");
         }
-
-        public void ChangeState<TState>() where TState : State => 
-            EnterState<TState>();
-
-        public void ExitState<TState>()
-        {
-            currentState?.Exit();
-            currentState = null;
-        }
-        
-        public State GetCurrentState<TState>() => 
-            currentState;
     }
 }

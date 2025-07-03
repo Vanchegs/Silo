@@ -9,7 +9,7 @@ namespace Internal.Codebase
         
         public override void Enter()
         {
-            throw new System.NotImplementedException();
+            gameManager.SceneSwitcher.SwitchScene(Scenes.MainMenuScene);
         }
 
         public override void Exit()

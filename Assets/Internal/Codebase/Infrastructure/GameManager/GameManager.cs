@@ -7,6 +7,8 @@ namespace Internal.Codebase
         public StateMachine StateMachine = new();
         
         public bool IsServicesInitialized { get; private set; }
+        
+        public SceneSwitcher SceneSwitcher { get; set; }
 
         private void Awake()
         {
@@ -19,7 +21,10 @@ namespace Internal.Codebase
 
         public void InitializeServices()
         {
+            SceneSwitcher = new SceneSwitcher();
+            
             IsServicesInitialized = true;
+            StateMachine.ChangeState<MainMenuState>();
         }
         
         private void StatesRegistration()
