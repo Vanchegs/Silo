@@ -2,7 +2,7 @@ using Internal.Codebase.PeopleLogic;
 
 namespace Internal.Codebase
 {
-    public class EconomyController : IEconomyController
+    public class EconomyController
     {
         private PeopleController peopleController;
         private CurrencyController currencyController;
@@ -18,10 +18,5 @@ namespace Internal.Codebase
             CurrencyController = currencyController;
             PeopleController = peopleController;
         }
-    }
-
-    public interface IEconomyController
-    {
-        
     }
 }
