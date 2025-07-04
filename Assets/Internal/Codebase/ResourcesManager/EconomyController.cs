@@ -7,8 +7,8 @@ namespace Internal.Codebase
         private PeopleController peopleController;
         private CurrencyController currencyController;
 
-        public PeopleController PeopleController { get; private set; }
-        public CurrencyController CurrencyController { get; private set; }
+        public static PeopleController PeopleController { get; private set; }
+        public static CurrencyController CurrencyController { get; private set; }
         
         public EconomyController()
         {

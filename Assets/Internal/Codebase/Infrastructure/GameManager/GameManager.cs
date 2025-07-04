@@ -10,7 +10,7 @@ namespace Internal.Codebase
 
         public bool IsServicesInitialized { get; private set; }
 
-        public SceneSwitcher SceneSwitcher { get; private set; }
+        public SceneSwitcherService SceneSwitcher { get; private set; }
 
         public static GameManager Instance
         {
@@ -52,7 +52,7 @@ namespace Internal.Codebase
 
         public void InitializeServices()
         {
-            SceneSwitcher = new SceneSwitcher();
+            SceneSwitcher = new SceneSwitcherService();
             
             IsServicesInitialized = true;
             StateMachine.ChangeState<MainMenuState>();
