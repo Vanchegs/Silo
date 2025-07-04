@@ -9,7 +9,7 @@ namespace Internal.Codebase
         
         public override void Enter()
         {
-            gameManager.SceneSwitcher.SwitchScene(Scenes.MainMenuScene);
+            SceneSwitcher.SwitchScene(Scenes.MainMenuScene);
         }
 
         public override void Exit()

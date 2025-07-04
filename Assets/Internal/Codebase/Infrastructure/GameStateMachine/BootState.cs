@@ -14,9 +14,7 @@ namespace Internal.Codebase
             gameManager.InitializeServices();
         }
 
-        public override void Exit()
-        {
-            gameManager.SceneSwitcher.SwitchScene(Scenes.MainMenuScene);
-        }
+        public override void Exit() => 
+            SceneSwitcher.SwitchScene(Scenes.MainMenuScene);
     }
 }

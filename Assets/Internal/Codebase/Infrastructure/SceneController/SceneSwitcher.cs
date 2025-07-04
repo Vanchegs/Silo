@@ -2,9 +2,9 @@ using UnityEngine.SceneManagement;
 
 namespace Internal.Codebase
 {
-    public class SceneSwitcherService : IService
+    public static class SceneSwitcher
     {
-        public void SwitchScene(Scenes scene) => 
+        public static void SwitchScene(Scenes scene) => 
             SceneManager.LoadScene(scene.ToString());
     }
 }
