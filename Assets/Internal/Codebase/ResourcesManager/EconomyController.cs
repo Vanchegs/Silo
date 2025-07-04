@@ -2,21 +2,26 @@ using Internal.Codebase.PeopleLogic;
 
 namespace Internal.Codebase
 {
-    public class EconomyController
+    public class EconomyControllerService : IService
     {
         private PeopleController peopleController;
         private CurrencyController currencyController;
 
-        public static PeopleController PeopleController { get; private set; }
-        public static CurrencyController CurrencyController { get; private set; }
+        public PeopleController PeopleController { get; private set; }
+        public CurrencyController CurrencyController { get; private set; }
         
-        public EconomyController()
+        public EconomyControllerService()
         {
             peopleController = new PeopleController();
             currencyController = new CurrencyController();
 
             CurrencyController = currencyController;
             PeopleController = peopleController;
+        }
+
+        public void LoadData()
+        {
+            
         }
     }
 }
