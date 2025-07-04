@@ -1,6 +1,6 @@
 namespace Internal.Codebase
 {
-    public class PlayerEconomyController
+    public class CurrencyController
     {
         
     }

@@ -1,6 +1,6 @@
 namespace Internal.Codebase.PeopleLogic
 {
-    public class PeopleManager
+    public class PeopleController
     {
         private People people;
         
