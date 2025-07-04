@@ -9,19 +9,13 @@ namespace Internal.Codebase.PeopleLogic
             people = new People(10);
         }
 
-        public void ChangePeopleAmount(int changeAmount)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void ChangePeopleAmount(int amountChange) => 
+            people.ChangePeopleAmount(amountChange);
 
-        public void UpPeopleLevel()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void UpPeopleLevel() => 
+            people.LevelUp();
 
-        public int GetPeopleAmount()
-        {
-            throw new System.NotImplementedException();
-        }
+        public int GetPeopleAmount() => 
+            people.Amount;
     }
 }

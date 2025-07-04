@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Internal.Codebase
@@ -11,7 +10,7 @@ namespace Internal.Codebase
 
         public bool IsServicesInitialized { get; private set; }
 
-        public SceneSwitcher SceneSwitcher { get; set; }
+        public SceneSwitcher SceneSwitcher { get; private set; }
 
         public static GameManager Instance
         {
