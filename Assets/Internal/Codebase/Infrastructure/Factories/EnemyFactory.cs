@@ -12,11 +12,11 @@ namespace Internal.Codebase
 
         public Enemy CreateEnemy(EnemyType enemyType)
         {
-            var enemy = enemyConfigs[enemyType].enemyPrefab;
-            
             if (!enemyConfigs.TryGetValue(enemyType, out var config))
                 throw new ArgumentException($"Enemy type {enemyType} not found in configs");
 
+            var enemy = enemyConfigs[enemyType].EnemyPrefab;
+            
             return enemy;
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efc5d2d15104f6898e516c89baa156d, type: 3}
   m_Name: MutantConfig
   m_EditorClassIdentifier: 
-  speed: 1
-  damage: 2
-  maxHealth: 5
-  enemyPrefab: {fileID: 4349219368532177369, guid: a2b10c9d62052444d9dc32caea7312f5, type: 3}
+  Speed: 1
+  Damage: 1
+  MaxHealth: 5
+  EnemyPrefab: {fileID: 7090174206423687039, guid: a2b10c9d62052444d9dc32caea7312f5, type: 3}

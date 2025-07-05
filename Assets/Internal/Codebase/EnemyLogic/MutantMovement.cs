@@ -14,7 +14,7 @@ namespace Internal.Codebase
         {
             this.transform = transform;
             this.shelterPosition = shelterPosition;
-            moveSpeed = enemyConfig.speed;
+            moveSpeed = enemyConfig.Speed;
 
             rb = transform.gameObject.GetComponent<Rigidbody2D>();
 

@@ -12,15 +12,11 @@ namespace Internal.Codebase
 
         internal IMovement movement;
 
-        private void FixedUpdate() => 
-            movement.Move();
-
-        public void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
+        public virtual void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
         {
-            speed = enemyConfig.speed;
-            damage = enemyConfig.damage;
-            maxHealth = enemyConfig.maxHealth;
-            movement = new MutantMovement(transform, shelterPosition, enemyConfig);
+            speed = enemyConfig.Speed;
+            damage = enemyConfig.Damage;
+            maxHealth = enemyConfig.MaxHealth;
             
             currentHealth = maxHealth;
             
@@ -40,7 +36,7 @@ namespace Internal.Codebase
             }
         }
 
-        private void Die() => 
+        public void Die() => 
             Destroy(gameObject);
     }
 }

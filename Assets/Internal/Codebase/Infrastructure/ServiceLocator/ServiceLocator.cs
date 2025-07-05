@@ -20,6 +20,9 @@ namespace Internal.Codebase
 
             return service;
         }
+
+        public static void ResetServices() => 
+            Services.Clear();
     }
 }
 
