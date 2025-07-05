@@ -17,5 +17,11 @@ namespace Internal.Codebase.PeopleLogic
 
         public int GetPeopleAmount() => 
             people.Amount;
+        
+        public void LoadSaveData(SaveData saveData)
+        {
+            people.ChangePeopleAmount(saveData.people.Amount);
+            people.ChangePeopleLevel(saveData.people.Level);
+        }
     }
 }

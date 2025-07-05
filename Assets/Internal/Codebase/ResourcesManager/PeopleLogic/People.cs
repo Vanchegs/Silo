@@ -1,3 +1,4 @@
+[System.Serializable]
 public class People
 {
     public int Level { get; private set; }
@@ -16,5 +17,11 @@ public class People
             return;
         
         Amount += changeValue;
+    }
+
+    public void ChangePeopleLevel(int level)
+    {
+        if (level > 0) 
+            Level = level;
     }
 }

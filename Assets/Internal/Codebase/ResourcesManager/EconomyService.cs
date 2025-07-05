@@ -2,7 +2,7 @@ using Internal.Codebase.PeopleLogic;
 
 namespace Internal.Codebase
 {
-    public class EconomyControllerService : IService
+    public class EconomyService : IService
     {
         private PeopleController peopleController;
         private CurrencyController currencyController;
@@ -10,7 +10,7 @@ namespace Internal.Codebase
         public PeopleController PeopleController { get; private set; }
         public CurrencyController CurrencyController { get; private set; }
         
-        public EconomyControllerService()
+        public EconomyService()
         {
             peopleController = new PeopleController();
             currencyController = new CurrencyController();
@@ -19,9 +19,10 @@ namespace Internal.Codebase
             PeopleController = peopleController;
         }
 
-        public void LoadData()
+        public void LoadData(SaveData saveData)
         {
-            
+            peopleController.LoadSaveData(saveData);
+            currencyController.LoadSaveData(saveData);
         }
     }
 }
