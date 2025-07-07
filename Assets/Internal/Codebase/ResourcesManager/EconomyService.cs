@@ -1,19 +1,21 @@
-using Internal.Codebase.PeopleLogic;
+using System;
 
 namespace Internal.Codebase
 {
     public class EconomyService : IService
     {
-        private PeopleController peopleController;
-        private CurrencyController currencyController;
+        private PeopleModel peopleController;
+        private CurrencyModel currencyController;
 
-        public PeopleController PeopleController { get; private set; }
-        public CurrencyController CurrencyController { get; private set; }
+        public static Action<int, int> OnUpdateEconomyDisplay;
+
+        public PeopleModel PeopleController { get; private set; }
+        public CurrencyModel CurrencyController { get; private set; }
         
         public EconomyService()
         {
-            peopleController = new PeopleController();
-            currencyController = new CurrencyController();
+            peopleController = new PeopleModel();
+            currencyController = new CurrencyModel();
 
             CurrencyController = currencyController;
             PeopleController = peopleController;

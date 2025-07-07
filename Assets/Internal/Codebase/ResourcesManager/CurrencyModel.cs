@@ -1,6 +1,6 @@
 namespace Internal.Codebase
 {
-    public class CurrencyController
+    public class CurrencyModel
     {
         private int currency;
         
