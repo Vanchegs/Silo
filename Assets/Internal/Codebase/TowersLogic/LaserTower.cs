@@ -10,10 +10,10 @@ namespace Internal.Codebase
         [SerializeField] private float range;
         [SerializeField] private float damagePerSecond;
         [SerializeField] private int maxAmmo;
-        [SerializeField] private LayerMask enemyLayer;
+        [SerializeField] private LayerMask enemyLayer; 
 
         [Header("Visuals")]
-        [SerializeField] private LineRenderer laserLine;
+        
         [SerializeField] private float laserAppearDuration;
         [SerializeField] private float laserDisappearDuration;
         [SerializeField] private Color activeLaserColor;
@@ -23,7 +23,8 @@ namespace Internal.Codebase
         [Header("UI")] 
         [SerializeField] private Canvas towerCanvas;
         [SerializeField] private Button towerButton;
-
+        
+        private LineRenderer laserLine;
         private float currentAmmo;
         private float ammoConsumptionRate = 1f;
         private Transform target;
@@ -53,6 +54,7 @@ namespace Internal.Codebase
 
         private void InitializeLaser()
         {
+            laserLine = GetComponent<LineRenderer>();
             laserLine.startColor = activeLaserColor;
             laserLine.endColor = activeLaserColor;
             laserLine.startWidth = 0.2f;
