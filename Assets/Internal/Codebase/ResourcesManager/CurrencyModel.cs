@@ -4,7 +4,7 @@ namespace Internal.Codebase
     {
         private int currency;
         
-        public void LoadPeople()
+        public void LoadCurrency()
         {
             currency = 10;
         }

@@ -9,17 +9,17 @@ namespace Internal.Codebase
 
         public static Action<int, int> OnUpdateEconomyDisplay;
 
-        public PeopleModel PeopleController { get; private set; }
-        public CurrencyModel CurrencyController { get; private set; }
+        public PeopleModel PeopleModel { get => peopleModel; private set => peopleModel = value; }
+        public CurrencyModel CurrencyModel { get => currencyModel; private set => currencyModel = value; }
         public TransitionalData TransitionalData { get; private set; }
         
         public EconomyService()
         {
             peopleModel = new PeopleModel();
             currencyModel = new CurrencyModel();
+            currencyModel.LoadCurrency();
+            peopleModel.LoadPeople();
 
-            CurrencyController = currencyModel;
-            PeopleController = peopleModel;
             TransitionalData = new TransitionalData(peopleModel.GetPeople(), currencyModel.GetCurrencyAmount());
         }
 

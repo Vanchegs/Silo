@@ -17,8 +17,8 @@ namespace Internal.Codebase
 
         private void UpdateUI()
         {
-            var peopleAmount = economyService.PeopleController.GetPeople().Amount;
-            var currency = economyService.CurrencyController.GetCurrencyAmount();
+            var peopleAmount = economyService.PeopleModel.GetPeople().Amount;
+            var currency = economyService.CurrencyModel.GetCurrencyAmount();
             
             economyView.UpdateEconomyDisplay(peopleAmount, currency);
         }
