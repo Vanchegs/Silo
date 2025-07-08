@@ -9,6 +9,8 @@ namespace Internal.Codebase
         private void Start()
         {
             economyService = (EconomyService)ServiceLocator.GetService<EconomyService>();
+            
+            Debug.Log(economyService.CurrencyController.GetCurrencyAmount().ToString());
         }
     }
 }

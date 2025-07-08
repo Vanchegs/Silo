@@ -14,7 +14,13 @@ namespace Internal.Codebase
         public int Currency
         {
             get => currency;
-            set => currency = value != null && currency >= 0 ? value : currency;
+            set => currency = value != null && currency >= 0 ? value : 0;
+        }
+
+        public TransitionalData(People people, int currency)
+        {
+            People = people;
+            Currency = currency;
         }
     }
 }

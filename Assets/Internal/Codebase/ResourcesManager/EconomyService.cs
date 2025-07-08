@@ -4,27 +4,29 @@ namespace Internal.Codebase
 {
     public class EconomyService : IService
     {
-        private PeopleModel peopleController;
-        private CurrencyModel currencyController;
+        private PeopleModel peopleModel;
+        private CurrencyModel currencyModel;
 
         public static Action<int, int> OnUpdateEconomyDisplay;
 
         public PeopleModel PeopleController { get; private set; }
         public CurrencyModel CurrencyController { get; private set; }
+        public TransitionalData TransitionalData { get; private set; }
         
         public EconomyService()
         {
-            peopleController = new PeopleModel();
-            currencyController = new CurrencyModel();
+            peopleModel = new PeopleModel();
+            currencyModel = new CurrencyModel();
 
-            CurrencyController = currencyController;
-            PeopleController = peopleController;
+            CurrencyController = currencyModel;
+            PeopleController = peopleModel;
+            TransitionalData = new TransitionalData(peopleModel.GetPeople(), currencyModel.GetCurrencyAmount());
         }
 
-        public void LoadData(SaveData saveData)
+        public void LoadSavedData(SaveData saveData)
         {
-            peopleController.LoadSaveData(saveData);
-            currencyController.LoadSaveData(saveData);
+            peopleModel.LoadSaveData(saveData);
+            currencyModel.LoadSaveData(saveData);
         }
     }
 }
