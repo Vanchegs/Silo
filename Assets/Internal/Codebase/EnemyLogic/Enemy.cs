@@ -19,8 +19,6 @@ namespace Internal.Codebase
             maxHealth = enemyConfig.MaxHealth;
             
             currentHealth = maxHealth;
-            
-            Debug.Log("Инициализация");
         }
 
         public virtual void TakeDamage(float damage)
