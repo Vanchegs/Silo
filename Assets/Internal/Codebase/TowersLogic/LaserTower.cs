@@ -159,6 +159,8 @@ namespace Internal.Codebase
                 laserLine.startColor = activeLaserColor;
                 laserLine.endColor = activeLaserColor;
             }
+            towerButton.transform.DOLocalMoveY(-0.5f,0.2f).From(0).SetEase(Ease.Flash)
+                .OnComplete(() => {towerButton.gameObject.SetActive(false);});
         }
 
         private void AppearLaser()
