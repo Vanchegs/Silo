@@ -9,9 +9,14 @@ namespace Internal.Codebase
             currency = 10;
         }
 
-        public void ChangeCurrencyAmount(int amountChange) => 
-            currency += amountChange;
+        public void ChangeCurrencyAmount(int changeValue)
+        {
+            if (currency + changeValue < 0)
+                return;
         
+            currency += changeValue;
+        }
+
         public int GetCurrencyAmount() => 
             currency;
 
