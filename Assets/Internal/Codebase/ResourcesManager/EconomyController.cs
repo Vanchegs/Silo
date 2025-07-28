@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Internal.Codebase
@@ -6,15 +7,22 @@ namespace Internal.Codebase
     {
         private EconomyService economyService;
         private EconomyView economyView;
+
+        public static Action OnUpdateEconomyUI;
         
         private void Start()
         {
+            OnUpdateEconomyUI += UpdateEconomyUI;
+            
             economyService = (EconomyService)ServiceLocator.GetService<EconomyService>();
             
-            UpdateUI();
+            UpdateEconomyUI();
         }
 
-        private void UpdateUI()
+        private void OnDisable() => 
+            OnUpdateEconomyUI -= UpdateEconomyUI;
+
+        private void UpdateEconomyUI()
         {
             economyView = FindView();
             

@@ -13,7 +13,7 @@ public class People
 
     public void ChangePeopleAmount(int changeValue)
     {
-        if (Amount - changeValue <= 0)
+        if (Amount + changeValue < 0)
             return;
         
         Amount += changeValue;
