@@ -10,13 +10,14 @@ namespace Internal.Codebase
         private void Start()
         {
             economyService = (EconomyService)ServiceLocator.GetService<EconomyService>();
-
-            economyView = FindView();
+            
             UpdateUI();
         }
 
         private void UpdateUI()
         {
+            economyView = FindView();
+            
             var peopleAmount = economyService.PeopleModel.GetPeople().Amount;
             var currency = economyService.CurrencyModel.GetCurrencyAmount();
             
