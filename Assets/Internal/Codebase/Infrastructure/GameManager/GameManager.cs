@@ -50,7 +50,7 @@ namespace Internal.Codebase
 
         public void InitializeServices()
         {
-            ServiceLocator.RegisterService(new EconomyService());
+            ServiceLocator.RegisterService(new EconomyDataService());
             
             IsServicesInitialized = true;
             StateMachine.ChangeState<MainMenuState>();

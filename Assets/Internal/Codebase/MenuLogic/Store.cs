@@ -4,11 +4,11 @@ namespace Internal.Codebase
 {
     public class Store : MonoBehaviour
     {
-        private EconomyService economyService;
+        private EconomyDataService economyService;
       
         private void Start()
         {
-            economyService = (EconomyService)ServiceLocator.GetService<EconomyService>(); 
+            economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>(); 
         }
 
         public void RecruitPeople()

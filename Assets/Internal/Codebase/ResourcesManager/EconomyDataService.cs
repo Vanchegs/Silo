@@ -2,7 +2,7 @@ using System;
 
 namespace Internal.Codebase
 {
-    public class EconomyService : IService
+    public class EconomyDataService : IService
     {
         private PeopleModel peopleModel;
         private CurrencyModel currencyModel;
@@ -13,7 +13,7 @@ namespace Internal.Codebase
         public CurrencyModel CurrencyModel { get => currencyModel; private set => currencyModel = value; }
         public TransitionalData TransitionalData { get; private set; }
         
-        public EconomyService()
+        public EconomyDataService()
         {
             peopleModel = new PeopleModel();
             currencyModel = new CurrencyModel();

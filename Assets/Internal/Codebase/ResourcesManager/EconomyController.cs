@@ -5,7 +5,7 @@ namespace Internal.Codebase
 {
     public class EconomyController : MonoBehaviour
     {
-        private EconomyService economyService;
+        private EconomyDataService economyService;
         private EconomyView economyView;
 
         public static Action OnUpdateEconomyUI;
@@ -14,7 +14,7 @@ namespace Internal.Codebase
         {
             OnUpdateEconomyUI += UpdateEconomyUI;
             
-            economyService = (EconomyService)ServiceLocator.GetService<EconomyService>();
+            economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>();
             
             UpdateEconomyUI();
         }
