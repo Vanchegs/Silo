@@ -4,17 +4,20 @@ namespace Internal.Codebase
 {
     public class Store : MonoBehaviour
     {
-        private EconomyDataService economyService;
+        private EconomyDataService economyDataService;
       
         private void Start()
         {
-            economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>(); 
+            economyDataService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>(); 
         }
 
         public void RecruitPeople()
         {
-            economyService.PeopleModel.ChangePeopleAmount(10);
-            economyService.CurrencyModel.ChangeCurrencyAmount(-5);
+            if (economyDataService.CurrencyModel.TryChangeCurrencyAmount(-5))
+                economyDataService.PeopleModel.ChangePeopleAmount(10);
+            else
+                Debug.Log("Недостаточно денег");
+            
             EconomyController.OnUpdateEconomyUI.Invoke();
         }
     }  
