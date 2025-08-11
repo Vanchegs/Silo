@@ -1,32 +1,30 @@
 using Internal.Codebase;
 using System.Collections.Generic;
 
-public class EnemyPool<T> where T : Enemy
+public class EnemyPool
 {
-    private List<T> enemies;
+    private List<Enemy> enemies;
     private EnemyFactory enemyFactory;
+    private EnemyType enemyPoolType;
     
-    public EnemyPool(EnemyConfigsDictionary enemyConfigs)
+    public EnemyPool(EnemyType enemyType, EnemyConfigsDictionary enemyConfigs)
     {
-        enemies = new List<T>();
+        enemies = new List<Enemy>();
         enemyFactory = new EnemyFactory(enemyConfigs);
+        enemyPoolType = enemyType;
     }
 
     public void InitPool(int poolSize, EnemyType enemyType)
     {
-        for (int i = 0; i < poolSize; i++)
-        {
-            CreateNewEnemy(enemyFactory.CreateEnemy(enemyType));
-        }
+        for (int i = 0; i < poolSize; i++) 
+            CreateNewEnemy();
     }
 
-    public void CreateNewEnemy<T>(T enemy) where T : Enemy
-    {
-        
-    }
+    public void CreateNewEnemy() => 
+        enemies.Add(enemyFactory.CreateEnemy(enemyPoolType));
 
-    public T TryGetEnemy(T enemy)
+    public Enemy TryGetEnemy(Enemy enemy)
     {
-        
+        return null;
     }
 }
