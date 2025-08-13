@@ -23,8 +23,16 @@ public class EnemyPool
     public void CreateNewEnemy() => 
         enemies.Add(enemyFactory.CreateEnemy(enemyPoolType));
 
-    public Enemy TryGetEnemy(Enemy enemy)
+    public Enemy GetEnemy()
     {
+        foreach (var enemy in enemies)
+        {
+            if (!enemy.enabled)
+            {
+                return enemy;
+            }
+        }
+        
         return null;
     }
 }
