@@ -5,8 +5,6 @@ namespace Internal.Codebase
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Space(10)]
-        [SerializeField] private Transform shelterPosition;
         [SerializeField] private int minSpawnTime, maxSpawnTime;
         
         [Space(10)]
