@@ -21,16 +21,17 @@ namespace Internal.Codebase
             mainCamera = CameraCash(out cameraHeight, out cameraWidth, out spawnMargin);
             
             enemyPool.InitPool(poolSize);
-            SpawnEnemy(EnemyType.Mutant);
+            SpawnEnemy();
 
             StartCoroutine(RegularSpawnMutant());
         }
 
-        public void SpawnEnemy(EnemyType enemyType)
+        public void SpawnEnemy()
         {
             var spawnPos = SpawnPosDefinition();
 
             var enemy = enemyPool.GetEnemy();
+            enemy.gameObject.SetActive(true);
             enemy.SetPosition(spawnPos);
         }
 
@@ -88,7 +89,7 @@ namespace Internal.Codebase
             {
                 var waitingTime = Random.Range(minSpawnTime, maxSpawnTime);
                 
-                SpawnEnemy(EnemyType.Mutant);
+                SpawnEnemy();
                 
                 yield return new WaitForSeconds(waitingTime); 
             }
