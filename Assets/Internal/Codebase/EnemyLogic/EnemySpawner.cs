@@ -31,9 +31,9 @@ namespace Internal.Codebase
         {
             var spawnPos = SpawnPosDefinition();
 
-            
-            var enemy = Instantiate(enemyFactory.CreateEnemy(enemyType), spawnPos, Quaternion.identity);
+            var enemy = enemyPool.GetEnemy();
             enemy.Initialize(enemyConfigs.configs[enemyType], shelterPosition);
+            enemy.SetPosition(spawnPos);
         }
 
         private Vector2 SpawnPosDefinition()

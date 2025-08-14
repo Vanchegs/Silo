@@ -901,6 +901,7 @@ MonoBehaviour:
   minSpawnTime: 2
   maxSpawnTime: 4
   enemyConfigs: {fileID: 11400000, guid: 6b73da2ca397f514394c0b655224d1c4, type: 2}
+  poolSize: 15
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

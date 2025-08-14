@@ -34,6 +34,9 @@ namespace Internal.Codebase
             }
         }
 
+        public void SetPosition(Vector2 position) => 
+            transform.position = position;
+
         public void Die() => 
             Destroy(gameObject);
     }
