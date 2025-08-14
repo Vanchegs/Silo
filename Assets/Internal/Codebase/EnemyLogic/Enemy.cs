@@ -12,7 +12,7 @@ namespace Internal.Codebase
 
         internal IMovement movement;
 
-        public virtual void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
+        public void Initialize(EnemyConfig enemyConfig)
         {
             speed = enemyConfig.Speed;
             damage = enemyConfig.Damage;
@@ -21,7 +21,7 @@ namespace Internal.Codebase
             currentHealth = maxHealth;
         }
 
-        public virtual void TakeDamage(float damage)
+        public void TakeDamage(float damage)
         {
             if (isDead) return;
             

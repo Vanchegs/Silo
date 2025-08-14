@@ -2,18 +2,19 @@ using Internal.Codebase;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool
+public class EnemyPool : MonoBehaviour
 {
+    [SerializeField] private EnemyType enemyPoolType;
+    [SerializeField] private Transform storagePoint;
+    [SerializeField] private EnemyConfigsDictionary enemyConfigs;
+    
     private List<Enemy> enemies;
     private EnemyFactory enemyFactory;
-    private EnemyType enemyPoolType;
-    private Transform storagePoint;
-    
-    public EnemyPool(EnemyType enemyType, EnemyConfigsDictionary enemyConfigs)
+
+    public void Start()
     {
         enemies = new List<Enemy>();
         enemyFactory = new EnemyFactory(enemyConfigs);
-        enemyPoolType = enemyType;
     }
 
     public void InitPool(int poolSize)
@@ -26,6 +27,7 @@ public class EnemyPool
     {
         var enemy = enemyFactory.CreateEnemy(enemyPoolType);
         enemies.Add(enemy);
+        Instantiate(enemy, storagePoint);
         return enemy;
     }
     

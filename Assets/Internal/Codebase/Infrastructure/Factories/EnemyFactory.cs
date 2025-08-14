@@ -16,6 +16,7 @@ namespace Internal.Codebase
                 throw new ArgumentException($"Enemy type {enemyType} not found in configs");
 
             var enemy = enemyConfigs[enemyType].EnemyPrefab;
+            enemy.Initialize(enemyConfigs[enemyType]);
             
             return enemy;
         }

@@ -5,12 +5,14 @@ namespace Internal.Codebase
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [Space(10)]
         [SerializeField] private Transform shelterPosition;
         [SerializeField] private int minSpawnTime, maxSpawnTime;
-        [SerializeField] private EnemyConfigsDictionary enemyConfigs;
+        
+        [Space(10)]
         [SerializeField] private int poolSize;
-
-        private EnemyPool enemyPool;
+        [SerializeField] private EnemyPool enemyPool;
+        
         private Camera mainCamera;
         private float cameraHeight;
         private float cameraWidth;
@@ -19,7 +21,6 @@ namespace Internal.Codebase
         private void Start()
         {
             mainCamera = CameraCash(out cameraHeight, out cameraWidth, out spawnMargin);
-            enemyPool = new EnemyPool(EnemyType.Mutant, enemyConfigs);
             
             enemyPool.InitPool(poolSize);
             SpawnEnemy(EnemyType.Mutant);
@@ -32,7 +33,6 @@ namespace Internal.Codebase
             var spawnPos = SpawnPosDefinition();
 
             var enemy = enemyPool.GetEnemy();
-            enemy.Initialize(enemyConfigs.configs[enemyType], shelterPosition);
             enemy.SetPosition(spawnPos);
         }
 

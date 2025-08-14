@@ -9,9 +9,9 @@ namespace Internal.Codebase
         private void FixedUpdate() => 
             movement.Move();
 
-        public override void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
+        public void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
         {
-            base.Initialize(enemyConfig, shelterPosition);
+            base.Initialize(enemyConfig);
             movement = new MutantMovement(transform, shelterPosition, enemyConfig);
         }
     }
