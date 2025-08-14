@@ -38,6 +38,6 @@ namespace Internal.Codebase
             transform.position = position;
 
         public void Die() => 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 }

@@ -41,12 +41,13 @@ public class EnemyPool : MonoBehaviour
     {
         foreach (var enemy in enemies)
         {
-            if (!enemy.enabled)
+            if (enemy != null && !enemy.gameObject.activeInHierarchy)
             {
+                enemy.gameObject.SetActive(true);
                 return enemy;
             }
         }
-        
+    
         return CreateNewEnemy();
     }
 }
