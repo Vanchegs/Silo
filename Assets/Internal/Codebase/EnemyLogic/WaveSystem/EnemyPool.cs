@@ -11,7 +11,7 @@ public class EnemyPool : MonoBehaviour
     private List<Enemy> enemies;
     private EnemyFactory enemyFactory;
 
-    public void Start()
+    public void Awake()
     {
         enemies = new List<Enemy>();
         enemyFactory = new EnemyFactory(enemyConfigs);
@@ -25,10 +25,27 @@ public class EnemyPool : MonoBehaviour
 
     public Enemy CreateNewEnemy()
     {
-        var enemy = enemyFactory.CreateEnemy(enemyPoolType);
-        enemies.Add(enemy);
-        Instantiate(enemy, storagePoint);
-        return enemy;
+        if (enemyFactory == null)
+        {
+            Debug.LogError("EnemyPool не настроен правильно!");
+            return null;
+        }
+
+        // Создаём врага через фабрику
+        Enemy enemy = enemyFactory.CreateEnemy(enemyPoolType);
+        
+        if (enemy == null)
+        {
+            Debug.LogError($"Не удалось создать врага типа {enemyPoolType}");
+            return null;
+        }
+
+        // Спавним и настраиваем врага
+        Enemy spawnedEnemy = Instantiate(enemy, storagePoint);
+        spawnedEnemy.gameObject.SetActive(false);
+        enemies.Add(spawnedEnemy);
+        
+        return spawnedEnemy;
     }
     
     public void ReturnEnemy(Enemy enemy) => 
