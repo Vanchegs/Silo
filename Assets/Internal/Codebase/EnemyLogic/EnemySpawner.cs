@@ -8,18 +8,20 @@ namespace Internal.Codebase
         [SerializeField] private Transform shelterPosition;
         [SerializeField] private int minSpawnTime, maxSpawnTime;
         [SerializeField] private EnemyConfigsDictionary enemyConfigs;
-        
-        private EnemyFactory enemyFactory;
+        [SerializeField] private int poolSize;
+
+        private EnemyPool enemyPool;
         private Camera mainCamera;
         private float cameraHeight;
         private float cameraWidth;
         private float spawnMargin;
-        
+
         private void Start()
         {
             mainCamera = CameraCash(out cameraHeight, out cameraWidth, out spawnMargin);
-            enemyFactory = new EnemyFactory(enemyConfigs);
+            enemyPool = new EnemyPool(EnemyType.Mutant, enemyConfigs);
             
+            enemyPool.InitPool(poolSize);
             SpawnEnemy(EnemyType.Mutant);
 
             StartCoroutine(RegularSpawnMutant());
@@ -29,6 +31,7 @@ namespace Internal.Codebase
         {
             var spawnPos = SpawnPosDefinition();
 
+            
             var enemy = Instantiate(enemyFactory.CreateEnemy(enemyType), spawnPos, Quaternion.identity);
             enemy.Initialize(enemyConfigs.configs[enemyType], shelterPosition);
         }

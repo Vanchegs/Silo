@@ -1,11 +1,13 @@
 using Internal.Codebase;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemyPool
 {
     private List<Enemy> enemies;
     private EnemyFactory enemyFactory;
     private EnemyType enemyPoolType;
+    private Transform storagePoint;
     
     public EnemyPool(EnemyType enemyType, EnemyConfigsDictionary enemyConfigs)
     {
@@ -14,7 +16,7 @@ public class EnemyPool
         enemyPoolType = enemyType;
     }
 
-    public void InitPool(int poolSize, EnemyType enemyType)
+    public void InitPool(int poolSize)
     {
         for (int i = 0; i < poolSize; i++) 
             CreateNewEnemy();
@@ -26,6 +28,9 @@ public class EnemyPool
         enemies.Add(enemy);
         return enemy;
     }
+    
+    public void ReturnEnemy(Enemy enemy) => 
+        enemy.gameObject.SetActive(false);
 
     public Enemy GetEnemy()
     {
