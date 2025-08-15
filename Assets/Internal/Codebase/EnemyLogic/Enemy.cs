@@ -4,7 +4,6 @@ namespace Internal.Codebase
 {
     public class Enemy : MonoBehaviour
     {
-        private int speed;
         private int damage;
         private bool isDead;
         private float currentHealth;
@@ -12,13 +11,12 @@ namespace Internal.Codebase
 
         internal IMovement movement;
 
-        public virtual void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
+        public void Initialize(EnemyConfig enemyConfig)
         {
-            speed = enemyConfig.Speed;
             damage = enemyConfig.Damage;
             maxHealth = enemyConfig.MaxHealth;
             
-            movement = new MutantMovement(transform, shelterPosition, enemyConfig);
+            movement = new MutantMovement(transform, enemyConfig);
             currentHealth = maxHealth;
         }
 

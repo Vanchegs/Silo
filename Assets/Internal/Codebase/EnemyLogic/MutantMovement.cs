@@ -5,15 +5,15 @@ namespace Internal.Codebase
     public class MutantMovement : IMovement
     {
         private Transform transform;
-        private Transform shelterPosition;
+        private Vector3 shelterPosition;
         private int moveSpeed;
         private float stoppingDistance = 0.5f;
         private Rigidbody2D rb;
     
-        public MutantMovement(Transform transform, Transform shelterPosition, EnemyConfig enemyConfig)
+        public MutantMovement(Transform transform, EnemyConfig enemyConfig)
         {
             this.transform = transform;
-            this.shelterPosition = shelterPosition;
+            shelterPosition = new Vector2(0, 0);
             moveSpeed = enemyConfig.Speed;
 
             rb = transform.gameObject.GetComponent<Rigidbody2D>();
@@ -25,7 +25,7 @@ namespace Internal.Codebase
     
         public void Move()
         {
-            Vector2 direction = (shelterPosition.position - transform.position).normalized;
+            Vector2 direction = (shelterPosition - transform.position).normalized;
             
             if (direction != Vector2.zero)
             {
@@ -38,7 +38,7 @@ namespace Internal.Codebase
                 );
             }
             
-            float distanceToTarget = Vector2.Distance(transform.position, shelterPosition.position);
+            float distanceToTarget = Vector2.Distance(transform.position, shelterPosition);
             if (distanceToTarget > stoppingDistance)
                 rb.velocity = direction * moveSpeed;
             else

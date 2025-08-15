@@ -7,7 +7,6 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] private EnemyType enemyPoolType;
     [SerializeField] private Transform storagePoint;
     [SerializeField] private EnemyConfigsDictionary enemyConfigs;
-    [SerializeField] private Transform shelterPosition;
     
     private List<Enemy> enemies;
     private EnemyFactory enemyFactory;
@@ -15,7 +14,7 @@ public class EnemyPool : MonoBehaviour
     public void Awake()
     {
         enemies = new List<Enemy>();
-        enemyFactory = new EnemyFactory(enemyConfigs, shelterPosition);
+        enemyFactory = new EnemyFactory(enemyConfigs);
     }
 
     public void InitPool(int poolSize)
@@ -26,13 +25,14 @@ public class EnemyPool : MonoBehaviour
 
     public Enemy CreateNewEnemy()
     {
-        Enemy enemy = enemyFactory.CreateEnemy(enemyPoolType);
+        Enemy newEnemy = enemyFactory.CreateEnemy(enemyPoolType);
         
-        Enemy spawnedEnemy = Instantiate(enemy, storagePoint);
-        spawnedEnemy.gameObject.SetActive(false);
-        enemies.Add(spawnedEnemy);
+        newEnemy.transform.SetParent(storagePoint);
+        newEnemy.gameObject.SetActive(false);
         
-        return spawnedEnemy;
+        enemies.Add(newEnemy);
+        
+        return newEnemy;
     }
     
     public void ReturnEnemy(Enemy enemy) => 

@@ -7,12 +7,9 @@ namespace Internal.Codebase
     public class EnemyFactory : IEnemyFactory
     {
         private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
-        
-        private Transform shelterPosition;
 
-        public EnemyFactory(EnemyConfigsDictionary enemyConfigs, Transform shelterPosition)
+        public EnemyFactory(EnemyConfigsDictionary enemyConfigs)
         {
-            this.shelterPosition = shelterPosition;
             this.enemyConfigs = enemyConfigs.configs;
         }
 
@@ -21,10 +18,11 @@ namespace Internal.Codebase
             if (!enemyConfigs.TryGetValue(enemyType, out var config))
                 throw new ArgumentException($"Enemy type {enemyType} not found in configs");
 
-            var enemy = enemyConfigs[enemyType].EnemyPrefab;
-            enemy.Initialize(enemyConfigs[enemyType], shelterPosition);
-            
-            return enemy;
+            Enemy enemyInstance = GameObject.Instantiate(config.EnemyPrefab);
+    
+            enemyInstance.Initialize(config);
+    
+            return enemyInstance;
         }
     }
 }
