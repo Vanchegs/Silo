@@ -12,12 +12,13 @@ namespace Internal.Codebase
 
         internal IMovement movement;
 
-        public void Initialize(EnemyConfig enemyConfig)
+        public virtual void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
         {
             speed = enemyConfig.Speed;
             damage = enemyConfig.Damage;
             maxHealth = enemyConfig.MaxHealth;
             
+            movement = new MutantMovement(transform, shelterPosition, enemyConfig);
             currentHealth = maxHealth;
         }
 

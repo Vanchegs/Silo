@@ -6,15 +6,7 @@ namespace Internal.Codebase
     {
         private Vector2 direction;
         
-        private void FixedUpdate()
-        {
+        private void FixedUpdate() => 
             movement.Move();
-        }
-
-        public override void Initialize(EnemyConfig enemyConfig, Transform shelterPosition)
-        {
-            base.Initialize(enemyConfig);
-            movement = new MutantMovement(transform, shelterPosition, enemyConfig);
-        }
     }
 }

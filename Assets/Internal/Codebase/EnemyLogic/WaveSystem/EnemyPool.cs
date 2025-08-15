@@ -7,6 +7,7 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] private EnemyType enemyPoolType;
     [SerializeField] private Transform storagePoint;
     [SerializeField] private EnemyConfigsDictionary enemyConfigs;
+    [SerializeField] private Transform shelterPosition;
     
     private List<Enemy> enemies;
     private EnemyFactory enemyFactory;
@@ -14,7 +15,7 @@ public class EnemyPool : MonoBehaviour
     public void Awake()
     {
         enemies = new List<Enemy>();
-        enemyFactory = new EnemyFactory(enemyConfigs);
+        enemyFactory = new EnemyFactory(enemyConfigs, shelterPosition);
     }
 
     public void InitPool(int poolSize)

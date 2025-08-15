@@ -898,7 +898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96333fab99f84c1bab729397d9c20f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shelterPosition: {fileID: 385653156}
   minSpawnTime: 2
   maxSpawnTime: 4
   poolSize: 15
@@ -918,6 +917,7 @@ MonoBehaviour:
   enemyPoolType: 0
   storagePoint: {fileID: 564674350}
   enemyConfigs: {fileID: 11400000, guid: 6b73da2ca397f514394c0b655224d1c4, type: 2}
+  shelterPosition: {fileID: 385653156}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
