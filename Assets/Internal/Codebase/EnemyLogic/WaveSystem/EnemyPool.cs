@@ -35,8 +35,10 @@ public class EnemyPool : MonoBehaviour
         return newEnemy;
     }
     
-    public void ReturnEnemy(Enemy enemy) => 
+    public void ReturnEnemy(Enemy enemy)
+    {
         enemy.gameObject.SetActive(false);
+    }
 
     public Enemy GetEnemy()
     {
