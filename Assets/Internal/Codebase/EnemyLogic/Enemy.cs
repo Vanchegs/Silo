@@ -6,9 +6,10 @@ namespace Internal.Codebase
     {
         private int damage;
         private bool isDead;
-        private float currentHealth;
         private int maxHealth;
 
+        internal float currentHealth;
+        
         internal IMovement movement;
 
         public void Initialize(EnemyConfig enemyConfig)
@@ -20,7 +21,7 @@ namespace Internal.Codebase
             currentHealth = maxHealth;
         }
 
-        public void TakeDamage(float damage)
+        public virtual void TakeDamage(float damage)
         {
             if (isDead) return;
             

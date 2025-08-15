@@ -917,7 +917,6 @@ MonoBehaviour:
   enemyPoolType: 0
   storagePoint: {fileID: 564674350}
   enemyConfigs: {fileID: 11400000, guid: 6b73da2ca397f514394c0b655224d1c4, type: 2}
-  shelterPosition: {fileID: 385653156}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
