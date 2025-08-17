@@ -5,6 +5,7 @@ namespace Internal.Codebase
     public class Mutant : Enemy
     {
         [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField] private int enemyPrice;
         
         private Vector2 direction;
         
@@ -20,6 +21,12 @@ namespace Internal.Codebase
                 particleSystem.gameObject.SetActive(true);
                 particleSystem.Play();
             }
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            EconomyController.OnUpdateCurrency.Invoke(enemyPrice);
         }
     }
 }

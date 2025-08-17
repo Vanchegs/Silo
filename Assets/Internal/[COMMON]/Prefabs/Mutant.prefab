@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 4995778078831385749}
+  enemyPrice: 2
 --- !u!1001 &8954375239518041865
 PrefabInstance:
   m_ObjectHideFlags: 0

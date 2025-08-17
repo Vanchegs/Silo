@@ -35,7 +35,7 @@ namespace Internal.Codebase
                 Destroy(gameObject);
                 return;
             }
-        
+            
             _instance = this;
             
             DontDestroyOnLoad(this);

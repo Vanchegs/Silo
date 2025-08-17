@@ -1,13 +1,9 @@
-using System;
-
 namespace Internal.Codebase
 {
     public class EconomyDataService : IService
     {
         private PeopleModel peopleModel;
         private CurrencyModel currencyModel;
-
-        public static Action<int, int> OnUpdateEconomyDisplay;
 
         public PeopleModel PeopleModel { get => peopleModel; private set => peopleModel = value; }
         public CurrencyModel CurrencyModel { get => currencyModel; private set => currencyModel = value; }

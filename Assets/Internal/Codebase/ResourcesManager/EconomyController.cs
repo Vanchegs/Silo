@@ -9,18 +9,23 @@ namespace Internal.Codebase
         private EconomyView economyView;
 
         public static Action OnUpdateEconomyUI;
+        public static Action<int> OnUpdateCurrency;
         
         private void Start()
         {
             OnUpdateEconomyUI += UpdateEconomyUI;
+            OnUpdateCurrency += AccrualMoney;
             
             economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>();
             
             UpdateEconomyUI();
         }
 
-        private void OnDisable() => 
+        private void OnDisable()
+        {
             OnUpdateEconomyUI -= UpdateEconomyUI;
+            OnUpdateCurrency += AccrualMoney;
+        }
 
         private void UpdateEconomyUI()
         {
@@ -36,6 +41,18 @@ namespace Internal.Codebase
         {
             var view = FindObjectOfType<EconomyView>();
             return view;
+        }
+
+        private void AccrualMoney(int accrualAmount)
+        {
+            if (economyService?.CurrencyModel == null)
+            {
+                Debug.LogError("CurrencyModel is null!");
+                return;
+            }
+            
+            economyService.CurrencyModel.TryChangeCurrencyAmount(accrualAmount);
+            OnUpdateEconomyUI?.Invoke(); // Безопасный вызов
         }
     }
 }
