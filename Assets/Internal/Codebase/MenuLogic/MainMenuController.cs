@@ -4,8 +4,13 @@ namespace Internal.Codebase
 {
     public class MainMenuController : MonoBehaviour
     {
+        private GameManager gameManager;
+
+        private void Start() => 
+            gameManager = FindObjectOfType<GameManager>();
+
         public void GameButtonClick() => 
-            SceneSwitcher.SwitchScene(Scenes.GameScene);
+            gameManager.StateMachine.ChangeState<GameState>();
     }
 }
 

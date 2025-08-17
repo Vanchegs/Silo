@@ -11,6 +11,7 @@ namespace Internal.Codebase
         {
             if (gameManager.IsServicesInitialized)
                 return;
+            
             gameManager.InitializeServices();
         }
 

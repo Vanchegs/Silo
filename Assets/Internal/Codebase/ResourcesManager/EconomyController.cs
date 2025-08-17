@@ -52,7 +52,7 @@ namespace Internal.Codebase
             }
             
             economyService.CurrencyModel.TryChangeCurrencyAmount(accrualAmount);
-            OnUpdateEconomyUI?.Invoke(); // Безопасный вызов
+            OnUpdateEconomyUI?.Invoke();
         }
     }
 }

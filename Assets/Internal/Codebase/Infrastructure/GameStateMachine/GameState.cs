@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Internal.Codebase
 {
     public class GameState : State
@@ -9,7 +11,9 @@ namespace Internal.Codebase
         
         public override void Enter()
         {
-            throw new System.NotImplementedException();
+            SceneSwitcher.SwitchScene(Scenes.GameScene);
+            Debug.Log("sgfserf");
+            EconomyController.OnUpdateCurrency.Invoke(10);
         }
 
         public override void Exit()
