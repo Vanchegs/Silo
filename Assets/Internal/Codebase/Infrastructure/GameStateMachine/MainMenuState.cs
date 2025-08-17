@@ -14,7 +14,7 @@ namespace Internal.Codebase
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
