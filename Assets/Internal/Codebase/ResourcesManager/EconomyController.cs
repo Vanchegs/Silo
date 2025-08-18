@@ -14,7 +14,7 @@ namespace Internal.Codebase
         private void Start()
         {
             OnUpdateEconomyUI += UpdateEconomyUI;
-            OnUpdateCurrency += AccrualMoney;
+            OnUpdateCurrency += AccrualBalance;
             
             economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>();
             
@@ -24,7 +24,7 @@ namespace Internal.Codebase
         private void OnDisable()
         {
             OnUpdateEconomyUI -= UpdateEconomyUI;
-            OnUpdateCurrency += AccrualMoney;
+            OnUpdateCurrency += AccrualBalance;
         }
 
         private void UpdateEconomyUI()
@@ -33,6 +33,8 @@ namespace Internal.Codebase
             
             var peopleAmount = economyService.PeopleModel.GetPeople().Amount;
             var currency = economyService.CurrencyModel.GetCurrencyAmount();
+            
+            Debug.Log(economyService);
             
             economyView.UpdateEconomyDisplay(peopleAmount, currency);
         }
@@ -43,7 +45,7 @@ namespace Internal.Codebase
             return view;
         }
 
-        private void AccrualMoney(int accrualAmount)
+        private void AccrualBalance(int accrualAmount)
         {
             if (economyService?.CurrencyModel == null)
             {
