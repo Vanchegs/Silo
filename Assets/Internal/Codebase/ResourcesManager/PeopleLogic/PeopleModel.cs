@@ -15,7 +15,7 @@ namespace Internal.Codebase
         public void UpPeopleLevel() => 
             people.LevelUp();
 
-        public People GetPeople() => 
+        public People GetPeopleAmount() => 
             people;
         
         public void LoadSaveData(SaveData saveData)

@@ -16,7 +16,7 @@ namespace Internal.Codebase
             currencyModel.LoadCurrency();
             peopleModel.LoadPeople();
 
-            TransitionalData = new TransitionalData(peopleModel.GetPeople(), currencyModel.GetCurrencyAmount());
+            TransitionalData = new TransitionalData(peopleModel.GetPeopleAmount(), currencyModel.GetCurrencyAmount());
         }
 
         public void LoadSavedData(SaveData saveData)

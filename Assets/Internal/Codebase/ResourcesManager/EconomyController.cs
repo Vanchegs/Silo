@@ -34,7 +34,7 @@ namespace Internal.Codebase
         {
             economyView = FindView();
             
-            var peopleAmount = economyService.PeopleModel.GetPeople().Amount;
+            var peopleAmount = economyService.PeopleModel.GetPeopleAmount().Amount;
             var currency = economyService.CurrencyModel.GetCurrencyAmount();
             
             Debug.Log(economyService);
@@ -50,7 +50,7 @@ namespace Internal.Codebase
 
         private void AccrualBalance(int accrualAmount)
         {
-            if (economyService?.CurrencyModel == null)
+            if (economyService.CurrencyModel == null)
             {
                 Debug.LogError("CurrencyModel is null!");
                 return;
