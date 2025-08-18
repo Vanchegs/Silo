@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Internal.Codebase
 {
@@ -17,6 +18,8 @@ namespace Internal.Codebase
             OnUpdateCurrency += AccrualBalance;
             
             economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>();
+            OnUpdateCurrency.Invoke(10);
+            Debug.Log(SceneManager.loadedSceneCount);
             
             UpdateEconomyUI();
         }

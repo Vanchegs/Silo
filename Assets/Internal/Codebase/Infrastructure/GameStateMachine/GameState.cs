@@ -13,7 +13,6 @@ namespace Internal.Codebase
         {
             SceneSwitcher.SwitchScene(Scenes.GameScene);
             Debug.Log("sgfserf");
-            EconomyController.OnUpdateCurrency.Invoke(10);
         }
 
         public override void Exit()
