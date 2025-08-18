@@ -11,15 +11,17 @@ namespace Internal.Codebase
 
         public static Action OnUpdateEconomyUI;
         public static Action<int> OnUpdateCurrency;
-        
+
+        private void Awake()
+        {
+            economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>();
+            Debug.Log(SceneManager.sceneCount);
+        }
+
         private void Start()
         {
             OnUpdateEconomyUI += UpdateEconomyUI;
             OnUpdateCurrency += AccrualBalance;
-            
-            economyService = (EconomyDataService)ServiceLocator.GetService<EconomyDataService>();
-            OnUpdateCurrency.Invoke(10);
-            Debug.Log(SceneManager.loadedSceneCount);
             
             UpdateEconomyUI();
         }
@@ -50,7 +52,7 @@ namespace Internal.Codebase
 
         private void AccrualBalance(int accrualAmount)
         {
-            if (economyService.CurrencyModel == null)
+            if (economyService?.CurrencyModel == null)
             {
                 Debug.LogError("CurrencyModel is null!");
                 return;
