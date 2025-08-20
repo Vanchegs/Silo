@@ -16,11 +16,12 @@ namespace Internal.Codebase
         {
             base.TakeDamage(damage);
             
-            if (currentHealth < 1)
+            Debug.Log(currentHealth);
+            /*if (currentHealth < 1)
             {
                 particleSystem.gameObject.SetActive(true);
                 particleSystem.Play();
-            }
+            }*/
         }
 
         public override void Die()
