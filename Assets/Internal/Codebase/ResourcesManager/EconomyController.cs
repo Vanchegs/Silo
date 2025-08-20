@@ -39,8 +39,6 @@ namespace Internal.Codebase
             var peopleAmount = economyService.PeopleModel.GetPeopleAmount().Amount;
             var currency = economyService.CurrencyModel.GetCurrencyAmount();
             
-            Debug.Log(economyService);
-            
             economyView.UpdateEconomyDisplay(peopleAmount, currency);
         }
 
