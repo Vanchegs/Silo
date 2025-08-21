@@ -3,7 +3,7 @@ using System;
 namespace Internal.Codebase
 {
     [Serializable]
-    public class EnemySettings
+    public struct EnemySettings
     {
         public int Speed;
         public int Damage;
