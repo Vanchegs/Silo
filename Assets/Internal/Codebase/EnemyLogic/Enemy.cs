@@ -23,15 +23,16 @@ namespace Internal.Codebase
 
         public virtual void TakeDamage(float damage)
         {
-            if (isDead) return;
-            
-            currentHealth -= damage;
+            if (isDead) 
+                return;
 
             if (currentHealth <= 0)
             {
                 isDead = true;
                 Die();
             }
+            
+            currentHealth -= damage;
         }
 
         public void SetPosition(Vector2 position) => 
