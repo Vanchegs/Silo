@@ -22,7 +22,7 @@ namespace Internal.Codebase
             EnemyConfig clonedConfig = Object.Instantiate(config);
     
             Enemy enemyInstance = Object.Instantiate(clonedConfig.EnemyPrefab);
-            enemyInstance.Initialize(clonedConfig);
+            enemyInstance.Initialize(clonedConfig.EnemySettings);
 
             return enemyInstance;
         }

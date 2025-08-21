@@ -10,11 +10,11 @@ namespace Internal.Codebase
         private float stoppingDistance = 0.5f;
         private Rigidbody2D rb;
     
-        public MutantMovement(Transform transform, EnemyConfig enemyConfig)
+        public MutantMovement(Transform transform, int speed)
         {
             this.transform = transform;
             shelterPosition = new Vector2(0, 0);
-            moveSpeed = enemyConfig.Speed;
+            moveSpeed = speed;
 
             rb = transform.gameObject.GetComponent<Rigidbody2D>();
 
