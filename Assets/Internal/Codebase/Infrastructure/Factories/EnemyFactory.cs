@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Internal.Codebase
 {
@@ -18,10 +19,11 @@ namespace Internal.Codebase
             if (!enemyConfigs.TryGetValue(enemyType, out var config))
                 throw new ArgumentException($"Enemy type {enemyType} not found in configs");
 
-            Enemy enemyInstance = GameObject.Instantiate(config.EnemyPrefab);
+            EnemyConfig clonedConfig = Object.Instantiate(config);
     
-            enemyInstance.Initialize(config);
-    
+            Enemy enemyInstance = Object.Instantiate(clonedConfig.EnemyPrefab);
+            enemyInstance.Initialize(clonedConfig);
+
             return enemyInstance;
         }
     }
