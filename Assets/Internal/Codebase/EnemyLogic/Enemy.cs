@@ -4,21 +4,21 @@ namespace Internal.Codebase
 {
     public class Enemy : MonoBehaviour
     {
+        [SerializeField] private EnemyStats enemyStats;
+        
         private int damage;
         private bool isDead;
-        private int maxHealth;
 
         internal float currentHealth;
         
         internal IMovement movement;
 
-        public void Initialize(EnemySettings enemySettings)
+        public void Initialize()
         {
-            damage = enemySettings.Damage;
-            maxHealth = enemySettings.MaxHealth;
+            damage = enemyStats.Damage;
             
-            movement = new MutantMovement(transform, enemySettings.Speed);
-            currentHealth = maxHealth;
+            movement = new MutantMovement(transform, enemyStats.Speed);
+            currentHealth = enemyStats.MaxHealth;
         }
 
         public virtual void TakeDamage(float damage)

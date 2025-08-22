@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Internal.Codebase
 {
     public class EnemyFactory : IEnemyFactory
     {
-        private readonly Dictionary<EnemyType, EnemyConfig> enemyConfigs;
+        private readonly Dictionary<EnemyType, GameObject> enemyConfigs;
 
         public EnemyFactory(EnemyConfigsDictionary enemyConfigs)
         {
@@ -15,15 +16,15 @@ namespace Internal.Codebase
 
         public Enemy CreateEnemy(EnemyType enemyType)
         {
-            if (!enemyConfigs.TryGetValue(enemyType, out var config))
+            if (!enemyConfigs.TryGetValue(enemyType, out var prefab))
                 throw new ArgumentException($"Enemy type {enemyType} not found in configs");
 
-            EnemyConfig clonedConfig = Object.Instantiate(config);
-    
-            Enemy enemyInstance = Object.Instantiate(clonedConfig.EnemyPrefab);
-            enemyInstance.Initialize(clonedConfig.EnemySettings);
+            var enemyPrefab = Object.Instantiate(prefab);
+            var enemy = enemyPrefab.GetComponent<Enemy>();
+            
+            enemy.Initialize();
 
-            return enemyInstance;
+            return enemy;
         }
     }
 }

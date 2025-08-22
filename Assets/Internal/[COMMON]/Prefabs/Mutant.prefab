@@ -172,6 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12475f2b02048ec862dc6900817b87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats:
+    Speed: 1
+    Damage: 1
+    MaxHealth: 10
   particleSystem: {fileID: 4995778078831385749}
   enemyPrice: 2
 --- !u!1001 &8954375239518041865
