@@ -41,6 +41,11 @@ namespace Internal.Codebase
         public virtual void Die()
         {
             gameObject.SetActive(false);
+            ResetStats();
+        }
+
+        private void ResetStats()
+        {
             currentHealth = enemyStats.MaxHealth;
             isDead = false;
         }
