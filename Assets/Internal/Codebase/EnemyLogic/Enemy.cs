@@ -38,7 +38,11 @@ namespace Internal.Codebase
         public void SetPosition(Vector2 position) => 
             transform.position = position;
 
-        public virtual void Die() => 
+        public virtual void Die()
+        {
             gameObject.SetActive(false);
+            currentHealth = enemyStats.MaxHealth;
+            isDead = false;
+        }
     }
 }
