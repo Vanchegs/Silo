@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Internal.Codebase
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, ITakeDamage
     {
         [SerializeField] private EnemyStats enemyStats;
         
