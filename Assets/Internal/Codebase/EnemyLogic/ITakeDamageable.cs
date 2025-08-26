@@ -1,6 +1,6 @@
 namespace Internal.Codebase
 {
-    public interface ITakeDamage
+    public interface ITakeDamageable
     {
         public void TakeDamage(float damage);
     }

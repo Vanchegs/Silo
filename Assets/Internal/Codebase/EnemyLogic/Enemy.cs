@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Internal.Codebase
 {
-    public class Enemy : MonoBehaviour, ITakeDamage
+    public class Enemy : MonoBehaviour, ITakeDamageable, ICauseDamageable
     {
         [SerializeField] private EnemyStats enemyStats;
         
@@ -48,6 +48,11 @@ namespace Internal.Codebase
         {
             currentHealth = enemyStats.MaxHealth;
             isDead = false;
+        }
+
+        public void CauseDamage()
+        {
+            
         }
     }
 }
