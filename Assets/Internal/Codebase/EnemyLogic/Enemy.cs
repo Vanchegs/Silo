@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Internal.Codebase
@@ -6,7 +7,7 @@ namespace Internal.Codebase
     {
         [SerializeField] private EnemyStats enemyStats;
         
-        private int damage;
+        private float damage;
         private bool isDead;
 
         internal float currentHealth;
@@ -50,9 +51,17 @@ namespace Internal.Codebase
             isDead = false;
         }
 
-        public void CauseDamage()
+        public void CauseDamage(ITakeDamageable takeDamageable, float damage) => 
+            takeDamageable.TakeDamage(damage);
+
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            
+            if (other.collider.tag == "Wall")
+            {
+                var target = other.gameObject.GetComponent<ITakeDamageable>();
+                CauseDamage(target, damage);
+                Debug.Log("Wall take damage");
+            }
         }
     }
 }
