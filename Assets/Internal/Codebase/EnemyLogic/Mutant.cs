@@ -17,7 +17,7 @@ namespace Internal.Codebase
             base.TakeDamage(damage);
             
             Debug.Log(currentHealth);
-            if (currentHealth < 1)
+            if (currentHealth < 0.5f)
             {
                 particleSystem.gameObject.SetActive(true);
                 particleSystem.Play();
